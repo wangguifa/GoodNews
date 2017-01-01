@@ -86,10 +86,6 @@ public class NetRequest {
         //执行请求获得响应结果
         Call call = okHttpClient.newCall(request);
         call.enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                deliverDataFailure(request, e, callBack);
-            }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
@@ -100,6 +96,11 @@ public class NetRequest {
                 } else {
                     throw new IOException(response + "");
                 }
+            }
+
+            @Override
+            public void onFailure(Call call, IOException e) {
+                deliverDataFailure(request, e, callBack);
             }
         });
     }
@@ -140,10 +141,6 @@ public class NetRequest {
         // 结果返回
         final Request request = new Request.Builder().url(url).post(requestBody).build();
         okHttpClient.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                deliverDataFailure(request, e, callBack);
-            }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
@@ -156,6 +153,10 @@ public class NetRequest {
                 }
             }
 
+            @Override
+            public void onFailure(Call call, IOException e) {
+                deliverDataFailure(request, e, callBack);
+            }
         });
     }
 
@@ -208,9 +209,9 @@ public class NetRequest {
      * 数据回调接口
      */
     public interface DataCallBack {
-        void requestFailure(Request request, IOException e);
-
         void requestSuccess(String result) throws Exception;
+
+        void requestFailure(Request request, IOException e);
     }
 
     /**
