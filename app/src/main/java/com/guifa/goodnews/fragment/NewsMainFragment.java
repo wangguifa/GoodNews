@@ -1,26 +1,38 @@
 package com.guifa.goodnews.fragment;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.guifa.goodnews.R;
+import com.guifa.goodnews.adapter.NewsMainTabLayoutAdapter;
+import com.guifa.goodnews.fragment.base.BaseFragment;
 
-import butterknife.ButterKnife;
+import butterknife.BindView;
 
 /**
  * 底部首页
  */
-public class NewsMainFragment extends Fragment {
+public class NewsMainFragment extends BaseFragment {
 
-    @Nullable
+    @BindView(R.id.newsMainTabLayout)
+    TabLayout mTabLayout;
+    @BindView(R.id.newsMainViewPager)
+    ViewPager mViewPager;
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_news_main,container,false);
-        ButterKnife.bind(this,view); // 初始化注解
-        return view;
+    public int getLayoutId() {
+        return R.layout.fragment_news_main;
+    }
+
+    @Override
+    public void initViews(View view) {
+        initTabLayoutView(); // 初始化tabLayout
+    }
+
+    private void initTabLayoutView() {
+        NewsMainTabLayoutAdapter adapter = new NewsMainTabLayoutAdapter(getFragmentManager());
+        mViewPager.setAdapter(adapter);
+        mTabLayout.setupWithViewPager(mViewPager);
     }
 }
