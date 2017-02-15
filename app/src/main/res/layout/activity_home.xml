@@ -23,14 +23,12 @@
     <com.flyco.tablayout.CommonTabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:padding="5dp"
         tl:tl_iconHeight="20dp"
         tl:tl_iconWidth="20dp"
         tl:tl_textSelectColor="#ff0000"
         tl:tl_textUnselectColor="#000000"
         tl:tl_textsize="11sp"
         tl:tl_underline_height="0dp" />
-
 </RelativeLayout>
