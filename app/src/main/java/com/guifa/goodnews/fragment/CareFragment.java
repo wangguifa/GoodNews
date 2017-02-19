@@ -10,15 +10,12 @@ import com.google.gson.Gson;
 import com.guifa.goodnews.R;
 import com.guifa.goodnews.adapter.CareFragmentAdapter;
 import com.guifa.goodnews.bean.CareBean;
-import com.guifa.goodnews.bean.CareNewsBean;
 import com.guifa.goodnews.constants.NetUrls;
 import com.guifa.goodnews.fragment.base.BaseFragment;
 import com.guifa.goodnews.http.NetRequest;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -72,8 +69,6 @@ public class CareFragment extends BaseFragment {
         Map<String, String> params = new HashMap<>();
         String url = NetUrls.BASE_URL + mTitle + "/" + 40 + "/" + 1;
         NetRequest.getRequest(url, params, new NetRequest.DataCallBack() {
-
-            private List<Map<String, Object>> maps;
 
             @Override
             public void requestSuccess(String result) throws Exception {

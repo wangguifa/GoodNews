@@ -9,6 +9,7 @@ import com.guifa.goodnews.adapter.NewsMainTabLayoutAdapter;
 import com.guifa.goodnews.fragment.base.BaseFragment;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * 底部首页
@@ -34,5 +35,10 @@ public class NewsMainFragment extends BaseFragment {
         NewsMainTabLayoutAdapter adapter = new NewsMainTabLayoutAdapter(getFragmentManager());
         mViewPager.setAdapter(adapter);
         mTabLayout.setupWithViewPager(mViewPager);
+    }
+
+    @OnClick(R.id.channelAdd)
+    public void onClick() {
+        toast("该功能暂未实现");
     }
 }

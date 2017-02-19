@@ -12,7 +12,7 @@ import com.guifa.goodnews.fragment.NewsFragment;
  */
 public class NewsMainTabLayoutAdapter extends FragmentPagerAdapter {
 
-    private String[] titles = new String[]{"开源资讯", "推荐博客", "技术问答", "每日一博", "码云推荐"};
+    private String[] titles = new String[]{"瞎推荐", "all", "福利", "休息视频"};
 
     public NewsMainTabLayoutAdapter(FragmentManager fm) {
         super(fm);
@@ -20,7 +20,7 @@ public class NewsMainTabLayoutAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return NewsFragment.newInstance(position + 1);
+        return NewsFragment.newInstance(titles[position]);
     }
 
     @Override
