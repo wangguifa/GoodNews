@@ -3,16 +3,26 @@ package com.guifa.goodnews.fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 
+import com.google.gson.Gson;
 import com.guifa.goodnews.R;
 import com.guifa.goodnews.adapter.CareFragmentAdapter;
+import com.guifa.goodnews.bean.CareBean;
+import com.guifa.goodnews.bean.CareNewsBean;
+import com.guifa.goodnews.constants.NetUrls;
 import com.guifa.goodnews.fragment.base.BaseFragment;
+import com.guifa.goodnews.http.NetRequest;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
+import okhttp3.Request;
 
 /**
  * Created by GuiFa on 2017/2/15.
@@ -24,7 +34,7 @@ public class CareFragment extends BaseFragment {
     RecyclerView mRecyclerView;
     private static final String ARG_TITLE = "title";
     private String mTitle; // 标题
-    private List<String> mData;
+    private CareBean careBean;
     private CareFragmentAdapter mAdapter;
 
     public static CareFragment newInstance(String title) {
@@ -43,7 +53,7 @@ public class CareFragment extends BaseFragment {
     @Override
     public void initViews(View view) {
         getArgumentFromSuper(); // 获取传值
-        initData(); // 初始化数据
+        getDataFromNet(); // 初始化数据
         initRecycler(); // 初始化RecyclerView
     }
 
@@ -58,19 +68,34 @@ public class CareFragment extends BaseFragment {
     /**
      * 初始化数据
      */
-    private void initData() {
-        mData = new ArrayList<>();
-        for (int i = 'A'; i < 'z'; i++) {
-            mData.add(mTitle + (char) i);
-        }
+    private void getDataFromNet() {
+        Map<String, String> params = new HashMap<>();
+        String url = NetUrls.BASE_URL + mTitle + "/" + 40 + "/" + 1;
+        NetRequest.getRequest(url, params, new NetRequest.DataCallBack() {
+
+            private List<Map<String, Object>> maps;
+
+            @Override
+            public void requestSuccess(String result) throws Exception {
+                if (!TextUtils.isEmpty(result)) {
+                    careBean = new Gson().fromJson(result, CareBean.class);
+                    mAdapter.setListDatas(careBean);
+                }
+            }
+
+            @Override
+            public void requestFailure(Request request, IOException e) {
+                toast("获取数据失败");
+            }
+        });
     }
 
     /**
      * 初始化RecyclerView
      */
     private void initRecycler() {
-        mAdapter = new CareFragmentAdapter(mRecyclerView.getContext(), mData);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(mRecyclerView.getContext()));
+        mAdapter = new CareFragmentAdapter(getActivity(), careBean);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setAdapter(mAdapter);
     }
 }

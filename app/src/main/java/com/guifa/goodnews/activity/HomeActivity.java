@@ -27,7 +27,7 @@ public class HomeActivity extends AppCompatActivity {
     @BindView(R.id.tabLayout)
     CommonTabLayout tabLayout;
     // 标题
-    private String[] mTitles = {"首页", "视频", "关注", "我的"};
+    private String[] mTitles = {"首页", "视频", "干货", "我的"};
     // 选中时图标
     private int[] mIconSelectIds = {R.drawable.bottom_home_select, R.drawable.bottom_video_select,
             R.drawable.bottom_care_select, R.drawable.bottom_mine_select};
