@@ -8,21 +8,8 @@
         android:id="@+id/newsMainTabLayout"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_toLeftOf="@+id/channelAdd"
-        android:layout_toStartOf="@+id/channelAdd"
         android:background="#87CEFF"
         app:tabMode="scrollable" />
-
-    <ImageView
-        android:id="@+id/channelAdd"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:background="#87CEFF"
-        android:contentDescription="@null"
-        android:padding="15dp"
-        android:src="@drawable/channel_add" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/newsMainViewPager"

@@ -36,9 +36,4 @@ public class NewsMainFragment extends BaseFragment {
         mViewPager.setAdapter(adapter);
         mTabLayout.setupWithViewPager(mViewPager);
     }
-
-    @OnClick(R.id.channelAdd)
-    public void onClick() {
-        toast("该功能暂未实现");
-    }
 }

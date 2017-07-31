@@ -5,7 +5,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.guifa.goodnews.R;
@@ -74,7 +73,7 @@ public class NewsFragment extends BaseFragment {
      */
     private void getDataFromNet() {
         Map<String, String> params = new HashMap<>();
-        String url = NetUrls.BASE_URL + mPageTitle + "/" + 40 + "/" + 1;
+        String url = NetUrls.BASE_URL + mPageTitle + "/" + 20 + "/" + 1;
         NetRequest.getRequest(url, params, new NetRequest.DataCallBack() {
 
             @Override
